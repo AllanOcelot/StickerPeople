@@ -43,11 +43,9 @@
                 </p>
                 <div v-if="stickerShowTags && this.sticker.spStickerTags"
                      class="sp-sticker-tags-container">
-                    <a href="://tags/tag-name">Retro</a>
-                    <a href="://tags/tag-name">Metal Gear Solid</a>
-                    <a href="://tags/tag-name">Nude</a>
-                    <a href="://tags/tag-name">NSFW</a>
-                    <a href="://tags/tag-name">BOX</a>
+                    <a v-for="tag in this.sticker.spStickerTags" href="://tags/tag-name">
+                        {{ tag }}
+                    </a>
                 </div>
             </div>
           </div>
@@ -183,6 +181,7 @@ export default {
                 .sp-sticker-tags-container {
                     width: 100%;
                     display: block;
+                    padding-top: 10px;
                     text-align: center;
                     a {
                         padding: 3px 8px;
