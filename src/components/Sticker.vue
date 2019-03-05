@@ -80,7 +80,7 @@ export default {
                 let style = 'background-color:' + this.sticker.spStickerBackground + ';';
                 return style;
             }
-            return;
+            return 'background-color: transparent';
         },
         backgroundImage(){
             if(this.sticker.spStickerImageUrl){
@@ -106,13 +106,13 @@ export default {
                     height = 'height:' + this.propHeight + 'px';
                 }
                 if ( this.propRotate ){
-                    rotation = 'transform: rotate(' + this.propRotate + ')';
+                    rotation = 'transform: rotate(' + this.propRotate + 'deg)';
                 }
                 if ( this.propLeft ){
-                    left = 'left:' + this.propLeft + 'px';
+                    left = 'left:' + this.propLeft + '%';
                 }
                 if ( this.propTop ){
-                    top = 'top:' + this.propTop + 'px';
+                    top = 'top:' + this.propTop + '%';
                 }
                 if ( this.propZindex ){
                     zindex = 'z-index:' + this.propZindex;

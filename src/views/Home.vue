@@ -1,38 +1,32 @@
 <template>
     <div class="page-wrapper">
-        <div class="sp-home-banner">
-            <sticker
-                v-for="sticker in stickers" :key="sticker"
-                :sticker="sticker"
-                :imageOnly="true"
-                :propWidth="generateHeight()"
-                :propHeight="generateWidth()"
-                :propZindex="2"
-                :propTop="-100"
-            />
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <h1>Welcome to Sticker People!</h1>
-                        <p>The online home and portfolio of stiker artists!</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <stickerBanner
+            propTitle="This is a test"
+            propSubtitle="This is subtitle"
+        />
         <div class="container">
             <sticker
-                v-for="sticker in stickers" :key="sticker" :sticker="sticker" />
+                v-for="sticker in stickers" :key="sticker" :sticker="sticker"
+            />
         </div>
     </div>
 </template>
 
 <script>
 // @ is an alias to /src
+import StickerBanner from '@/components/includes/StickerBanner.vue';
 import Sticker from '@/components/Sticker.vue';
 
 export default {
     name: 'home',
+    sticker_width: 0,
+    sticker_height: 0,
+    sticker_rotation: 0,
     props: {
+    },
+    components: {
+        Sticker,
+        StickerBanner,
     },
     data: function(){
         return {
@@ -49,28 +43,47 @@ export default {
                     spStickerDateCreated: "02/04/19",
                     spStickerTitle:"ART",
                     spStickerBackground:"red",
-                    spStickerImageUrl:"https://devstickers.com/assets/img/pro/yjp0.png"
+                    spStickerImageUrl:"https://smallimg.pngkey.com/png/small/139-1396773_sticker-transparent-girly-sticker-tumblr-pink-png.png"
                 },
                 {
                     spStickerAuthor: "Allan Ocelot",
                     spStickerDateCreated: "02/04/19",
                     spStickerTitle:"ART",
                     spStickerBackground:"pink",
-                    spStickerImageUrl:"https://devstickers.com/assets/img/pro/yjp0.png"
+                    spStickerImageUrl:"http://www.stickpng.com/assets/images/580b585b2edbce24c47b2a1f.png"
+                },
+                {
+                    spStickerAuthor: "AllanCodes",
+                    spStickerDateCreated: "02/02/19",
+                    spStickerTitle:"Fiat",
+                    spStickerBackground:"#000000",
+                    spStickerTags: ['Art', 'Explicit', 'Adult', 'Smoke', 'Fantasy']
+                },
+                {
+                    spStickerAuthor: "Allan Ocelot",
+                    spStickerDateCreated: "02/04/19",
+                    spStickerTitle:"ART",
+                    spStickerBackground:"red",
+                    spStickerImageUrl:"http://static1.squarespace.com/static/58c3668b2994cae7ec5fc536/58e1658e9de4bba768683b68/5a13b073f9619a97a1309fea/1511239796953/Bus+Sticker.png"
+                },
+                {
+                    spStickerAuthor: "Allan Ocelot",
+                    spStickerDateCreated: "02/04/19",
+                    spStickerTitle:"ART",
+                    spStickerBackground:"pink",
+                    spStickerImageUrl:"https://cdn.shopify.com/s/files/1/0104/8882/products/batman-macbook-sticker-600x600.png?v=1520335105"
+                },
+                {
+                    spStickerAuthor: "Allan Ocelot",
+                    spStickerDateCreated: "02/04/19",
+                    spStickerTitle:"ART",
+                    spStickerBackground:"pink",
+                    spStickerImageUrl:"http://static1.squarespace.com/static/58c3668b2994cae7ec5fc536/58e1658e9de4bba768683b68/5a13b073f9619a97a1309fea/1511239796953/Bus+Sticker.png"
                 }
             ],
         }
     },
-    components: {
-        Sticker,
-    },
     methods: {
-        generateWidth() {
-            return 500;
-        },
-        generateHeight() {
-            return 750;
-        },
     },
 }
 </script>
@@ -86,5 +99,23 @@ export default {
         margin-bottom: 40px;
         min-height: 60vh;
         overflow: hidden;
+    }
+    .sp-home-banner:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 51;
+        background-color: rgba(0,0,0,0.8);
+    }
+    .sp-home-banner .container {
+        position: relative;
+        z-index: 55;
+    }
+    .sp-home-banner-content {
+        z-index: 100;
+        text-shadow: 1px 0 0 rgba(255,255,255, 0.5);
     }
 </style>
