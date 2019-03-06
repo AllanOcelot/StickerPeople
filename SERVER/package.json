@@ -1,0 +1,14 @@
+{
+  "name": "sticker-people-server",
+  "version": "1.0.0",
+  "description": "The NODE js server for sticker people",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Allan",
+  "license": "ISC",
+  "dependencies": {
+    "mysql": "^2.16.0"
+  }
+}

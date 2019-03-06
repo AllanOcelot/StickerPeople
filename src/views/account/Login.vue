@@ -12,11 +12,18 @@
         </div>
         <div else>
             <h1>USER IS NOT LOGGED IN</h1>
+            <button type="button" name="button" @click="attemptLogin()">
+                CLICK ME TO ATTEMPT TO LOGIN
+            </button>
         </div>
     </div>
 </template>
 
 <script>
+
+import axios from 'axios';
+
+const API_URL = 'http://localhost:3306';
 
 export default {
     name: 'login',
@@ -31,6 +38,13 @@ export default {
         }
     },
     methods: {
+        attemptLogin(){
+            axios.get(API_URL).then(function(response){
+                console.log(response);
+            }).catch(function (error) {
+                console.log('E R R O R - AttemptLogin function // Login vue');
+            });
+        },
     },
 }
 </script>
