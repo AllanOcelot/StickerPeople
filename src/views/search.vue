@@ -1,12 +1,9 @@
 <template>
     <div class="">
+        <stickerBanner
+            propTitle="Sticker Search"
+        />
         <div class="" v-if="!isLoading && !isError">
-            <p>STICKER DATA IS:</p>
-            {{stickers}}
-            <br>
-            <hr>
-            <p>GET FIRST STICKER</p>
-            {{stickers[0]["NAME"]}}
             <sticker
                 v-for="sticker in stickers" :key="sticker"
                 :sticker="sticker"
@@ -21,6 +18,8 @@
 
 <script>
 import axios from 'axios';
+
+import StickerBanner from '@/components/includes/StickerBanner.vue';
 import Sticker from '@/components/Sticker.vue';
 
 export default {
@@ -28,6 +27,7 @@ export default {
     props: {
     },
     components: {
+        StickerBanner,
         Sticker,
     },
     data: function(){
@@ -40,10 +40,9 @@ export default {
     methods: {
         defaultLoad(){
             var self = this;
-            console.log('Default load called');
             axios.get('http://localhost:3030/search').then(function(response){
                 self.isLoading = false;
-                self.stickers =response.data;
+                self.stickers = response.data;
             }).catch(function (error) {
                 self.isError = true;
                 console.log('E R R O R - AttemptLogin function // Login vue');

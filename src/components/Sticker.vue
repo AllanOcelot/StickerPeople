@@ -77,20 +77,18 @@ export default {
             'propWidth', 'propHeight', 'propRotate', 'propLeft', 'propTop', 'propZindex'],
     computed: {
         backgroundColor(){
-            if(this.sticker.spStickerBackground){
-                let style = 'background-color:' + this.sticker.spStickerBackground + ';';
+            if(this.sticker.BGCOLOR){
+                let style = 'background-color:#' + this.sticker.BGCOLOR + ';';
                 return style;
             }
             return 'background-color: transparent';
         },
         backgroundImage(){
-            if(this.sticker.spStickerImageUrl){
-                let style = 'background-image: (' + this.sticker.spStickerImageUrl + ');';
-                return style;
-            }else{
-                let style = 'background-image:(/assets/images/placeholder_sticker.png);';
-                return style;
+            if(!this.sticker.SOURCE){
+                return;
             }
+            let style = 'background-image:url("/stickers/' + this.sticker.OWNER_ID + '/' + this.sticker.SOURCE + '");';
+            return style;
         },
         style(){
             if (this.imageOnly){
