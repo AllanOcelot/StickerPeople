@@ -22,7 +22,7 @@
                             {{this.sticker.NAME}}
                         </span>
                         <span class="sp-sticker-details-container">
-                            <a class="sp-sticker-author" href="://UserProfile">
+                            <a class="sp-sticker-author" :href="'/users/UserProfile/' + cleanName(this.sticker.AUTHOR)">
                                 <i class="fas fa-user"></i> <span>{{this.sticker.AUTHOR}}</span>
                             </a>
                             <span class="sp-sticker-date" href="#">
@@ -130,9 +130,7 @@ export default {
                 return;
             }
             var t = this.sticker.CREATED.split(/[- :]/);
-            var d = new Date(Date.UTC(t[0], t[1]-1, t[2], t[3], t[4], t[5]));
-            console.log(t);
-            return d;
+            return "" + t[2].substring(0, 2) + "/" + t[1] + "/" + t[0];
         },
         generateTags(){
             if(!this.sticker.TAGS){
@@ -140,6 +138,9 @@ export default {
             }
             let tags = this.sticker.TAGS.split(',');
             return tags;
+        },
+        cleanName(name){
+            return name.trim().replace(/\s+/g, '-').toLowerCase();
         },
         cleanTag(tag){
             return tag.trim().replace(/\s+/g, '-').toLowerCase();
