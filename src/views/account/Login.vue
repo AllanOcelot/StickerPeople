@@ -23,7 +23,7 @@
 
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3306';
+const API_URL = 'http://localhost:3030/users/1';
 
 export default {
     name: 'login',
@@ -40,7 +40,7 @@ export default {
     methods: {
         attemptLogin(){
             axios.get(API_URL).then(function(response){
-                console.log(response);
+                console.log(response.data);
             }).catch(function (error) {
                 console.log('E R R O R - AttemptLogin function // Login vue');
             });

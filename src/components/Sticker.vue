@@ -19,19 +19,20 @@
                   <div class="sp-sticker-body">
                     <div class="sp-sticker-information">
                         <span class="sp-sticker-title">
-                            {{this.sticker.spStickerTitle}}
+                            {{this.sticker.NAME}}
                         </span>
                         <span class="sp-sticker-details-container">
                             <a class="sp-sticker-author" href="://UserProfile">
-                                <i class="fas fa-user"></i> <span>{{this.sticker.spStickerAuthor}}</span>
+                                <i class="fas fa-user"></i> <span>{{this.sticker.AUTHOR}}</span>
                             </a>
                             <span class="sp-sticker-date" href="#">
-                                <i class="far fa-calendar-alt"></i> {{this.sticker.spStickerDateCreated}}
+                                <i class="far fa-calendar-alt"></i>
+                                {{ createdDateFormated() }}
                             </span>
                         </span>
                     </div>
                     <div class="sp-sticker-tags">
-                        <p @click="toggleTags()" v-if="this.sticker.spStickerTags">
+                        <p @click="toggleTags()" v-if="generateTags()">
                             <transition name="fade">
                                 <span key=1 v-if="stickerShowTags">
                                     Hide Tags
@@ -50,9 +51,9 @@
                             <i class="far fa-frown-open"></i>
                             </span>
                         </p>
-                        <div v-if="stickerShowTags && this.sticker.spStickerTags"
+                        <div v-if="stickerShowTags && generateTags()"
                              class="sp-sticker-tags-container">
-                            <a v-for="tag in this.sticker.spStickerTags" :key="tag" href="://tags/tag-name">
+                            <a v-for="tag in generateTags()" :key="tag" :href="'/search/tags/' + cleanTag(tag)">
                                 {{ tag }}
                             </a>
                         </div>
@@ -124,6 +125,25 @@ export default {
         }
     },
     methods: {
+        createdDateFormated(){
+            if(!this.sticker.CREATED){
+                return;
+            }
+            var t = this.sticker.CREATED.split(/[- :]/);
+            var d = new Date(Date.UTC(t[0], t[1]-1, t[2], t[3], t[4], t[5]));
+            console.log(t);
+            return d;
+        },
+        generateTags(){
+            if(!this.sticker.TAGS){
+                return;
+            }
+            let tags = this.sticker.TAGS.split(',');
+            return tags;
+        },
+        cleanTag(tag){
+            return tag.trim().replace(/\s+/g, '-').toLowerCase();
+        },
         toggleTags(){
             this.stickerShowTags = !this.stickerShowTags;
         },

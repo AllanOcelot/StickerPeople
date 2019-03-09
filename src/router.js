@@ -3,6 +3,9 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import About from './views/About.vue'
 
+//Search
+import Search from './views/search.vue'
+
 //Accounts
 import Login from './views/account/Login.vue'
 
@@ -28,6 +31,11 @@ export default new Router({
       path: '/about',
       name: 'about',
       component: About
+    },
+    {
+      path: '/search',
+      name: 'search',
+      component: Search
     },
     {
       path: '/login',
