@@ -54,7 +54,7 @@
                         <div v-if="stickerShowTags && generateTags()"
                              class="sp-sticker-tags-container">
                             <a v-for="tag in generateTags()" :key="tag" :href="'/search/tags/' + cleanTag(tag)">
-                                {{ tag }}
+                                {{ cleanTag(tag) }}
                             </a>
                         </div>
                     </div>
@@ -95,8 +95,8 @@ export default {
                 let backgroundImage, width, height, rotation, left, top, zindex = '';
 
 
-                if (this.sticker.spStickerImageUrl){
-                    backgroundImage = 'background-image:' + 'url(' + this.sticker.spStickerImageUrl + ')';
+                if (this.sticker.SOURCE){
+                    backgroundImage = 'background-image:url("/stickers/' + this.sticker.OWNER_ID + '/' + this.sticker.SOURCE + '");';
                 }
                 if ( this.propWidth ){
                     width =  'width:' + this.propWidth + 'px';

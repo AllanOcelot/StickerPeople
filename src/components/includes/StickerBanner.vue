@@ -1,7 +1,7 @@
 <template>
     <div class="sp-sticker-banner">
         <sticker
-            v-for="sticker in stickers" :key="sticker"
+            v-for="sticker in stickers" :key="sticker.ID"
             :sticker="sticker"
             :imageOnly="true"
             :propWidth="generateHeight()"
@@ -26,6 +26,7 @@
 
 <script>
 // @ is an alias to /src
+import axios from 'axios';
 import Sticker from '@/components/Sticker.vue';
 
 export default {
@@ -36,154 +37,26 @@ export default {
     props: ['propTitle', 'propSubtitle'],
     data: function(){
         return {
-            stickers: [
-                {
-                    spStickerAuthor: "AllanCodes",
-                    spStickerDateCreated: "02/02/19",
-                    spStickerTitle:"Fiat",
-                    spStickerBackground:"#000000",
-                    spStickerTags: ['Art', 'Explicit', 'Adult', 'Smoke', 'Fantasy']
-                },
-                {
-                    spStickerAuthor: "Allan Ocelot",
-                    spStickerDateCreated: "02/04/19",
-                    spStickerTitle:"ART",
-                    spStickerBackground:"red",
-                    spStickerImageUrl:"https://smallimg.pngkey.com/png/small/139-1396773_sticker-transparent-girly-sticker-tumblr-pink-png.png"
-                },
-                {
-                    spStickerAuthor: "Allan Ocelot",
-                    spStickerDateCreated: "02/04/19",
-                    spStickerTitle:"ART",
-                    spStickerBackground:"pink",
-                    spStickerImageUrl:"http://www.stickpng.com/assets/images/580b585b2edbce24c47b2a1f.png"
-                },
-                {
-                    spStickerAuthor: "AllanCodes",
-                    spStickerDateCreated: "02/02/19",
-                    spStickerTitle:"Fiat",
-                    spStickerBackground:"#000000",
-                    spStickerTags: ['Art', 'Explicit', 'Adult', 'Smoke', 'Fantasy']
-                },
-                {
-                    spStickerAuthor: "Allan Ocelot",
-                    spStickerDateCreated: "02/04/19",
-                    spStickerTitle:"ART",
-                    spStickerBackground:"red",
-                    spStickerImageUrl:"http://static1.squarespace.com/static/58c3668b2994cae7ec5fc536/58e1658e9de4bba768683b68/5a13b073f9619a97a1309fea/1511239796953/Bus+Sticker.png"
-                },
-                {
-                    spStickerAuthor: "Allan Ocelot",
-                    spStickerDateCreated: "02/04/19",
-                    spStickerTitle:"ART",
-                    spStickerBackground:"pink",
-                    spStickerImageUrl:"https://cdn.shopify.com/s/files/1/0104/8882/products/batman-macbook-sticker-600x600.png?v=1520335105"
-                },
-                {
-                    spStickerAuthor: "Allan Ocelot",
-                    spStickerDateCreated: "02/04/19",
-                    spStickerTitle:"ART",
-                    spStickerBackground:"pink",
-                    spStickerImageUrl:"http://static1.squarespace.com/static/58c3668b2994cae7ec5fc536/58e1658e9de4bba768683b68/5a13b073f9619a97a1309fea/1511239796953/Bus+Sticker.png"
-                },
-                {
-                    spStickerAuthor: "AllanCodes",
-                    spStickerDateCreated: "02/02/19",
-                    spStickerTitle:"Fiat",
-                    spStickerBackground:"#000000",
-                    spStickerTags: ['Art', 'Explicit', 'Adult', 'Smoke', 'Fantasy']
-                },
-                {
-                    spStickerAuthor: "Allan Ocelot",
-                    spStickerDateCreated: "02/04/19",
-                    spStickerTitle:"ART",
-                    spStickerBackground:"red",
-                    spStickerImageUrl:"http://static1.squarespace.com/static/58c3668b2994cae7ec5fc536/58e1658e9de4bba768683b68/5a13b073f9619a97a1309fea/1511239796953/Bus+Sticker.png"
-                },
-                {
-                    spStickerAuthor: "Allan Ocelot",
-                    spStickerDateCreated: "02/04/19",
-                    spStickerTitle:"ART",
-                    spStickerBackground:"pink",
-                    spStickerImageUrl:"http://static1.squarespace.com/static/58c3668b2994cae7ec5fc536/58e1658e9de4bba768683b68/5a13b073f9619a97a1309fea/1511239796953/Bus+Sticker.png"
-                },
-                {
-                    spStickerAuthor: "AllanCodes",
-                    spStickerDateCreated: "02/02/19",
-                    spStickerTitle:"Fiat",
-                    spStickerBackground:"#000000",
-                    spStickerTags: ['Art', 'Explicit', 'Adult', 'Smoke', 'Fantasy']
-                },
-                {
-                    spStickerAuthor: "Allan Ocelot",
-                    spStickerDateCreated: "02/04/19",
-                    spStickerTitle:"ART",
-                    spStickerBackground:"red",
-                    spStickerImageUrl:"http://static1.squarespace.com/static/58c3668b2994cae7ec5fc536/58e1658e9de4bba768683b68/5a13b073f9619a97a1309fea/1511239796953/Bus+Sticker.png"
-                },
-                {
-                    spStickerAuthor: "Allan Ocelot",
-                    spStickerDateCreated: "02/04/19",
-                    spStickerTitle:"ART",
-                    spStickerBackground:"pink",
-                    spStickerImageUrl:"http://static1.squarespace.com/static/58c3668b2994cae7ec5fc536/58e1658e9de4bba768683b68/5a13b073f9619a97a1309fea/1511239796953/Bus+Sticker.png"
-                },
-                {
-                    spStickerAuthor: "AllanCodes",
-                    spStickerDateCreated: "02/02/19",
-                    spStickerTitle:"Fiat",
-                    spStickerBackground:"#000000",
-                    spStickerTags: ['Art', 'Explicit', 'Adult', 'Smoke', 'Fantasy']
-                },
-                {
-                    spStickerAuthor: "Allan Ocelot",
-                    spStickerDateCreated: "02/04/19",
-                    spStickerTitle:"ART",
-                    spStickerBackground:"red",
-                    spStickerImageUrl:"https://devstickers.com/assets/img/pro/yjp0.png"
-                },
-                {
-                    spStickerAuthor: "Allan Ocelot",
-                    spStickerDateCreated: "02/04/19",
-                    spStickerTitle:"ART",
-                    spStickerBackground:"pink",
-                    spStickerImageUrl:"https://devstickers.com/assets/img/pro/yjp0.png"
-                },
-                {
-                    spStickerAuthor: "Allan Ocelot",
-                    spStickerDateCreated: "02/04/19",
-                    spStickerTitle:"ART",
-                    spStickerBackground:"pink",
-                    spStickerImageUrl:"https://devstickers.com/assets/img/pro/yjp0.png"
-                },
-                {
-                    spStickerAuthor: "AllanCodes",
-                    spStickerDateCreated: "02/02/19",
-                    spStickerTitle:"Fiat",
-                    spStickerBackground:"#000000",
-                    spStickerTags: ['Art', 'Explicit', 'Adult', 'Smoke', 'Fantasy']
-                },
-                {
-                    spStickerAuthor: "Allan Ocelot",
-                    spStickerDateCreated: "02/04/19",
-                    spStickerTitle:"ART",
-                    spStickerBackground:"red",
-                    spStickerImageUrl:"https://b.kisscc0.com/20180718/ybe/kisscc0-mail-carrier-encapsulated-postscript-postman-5b4ed77531b1b5.0431478215318936212036.jpg"
-                },
-                {
-                    spStickerAuthor: "Allan Ocelot",
-                    spStickerDateCreated: "02/04/19",
-                    spStickerTitle:"ART",
-                    spStickerBackground:"pink",
-                    spStickerImageUrl:"https://banner2.kisspng.com/20180216/dle/kisspng-cartoon-fish-royalty-free-illustration-cute-cartoon-fish-vector-5a86f78228b855.1907244315187946261668.jpg"
-                }
-            ],
+            stickers: [],
         }
     },
     components: {
         Sticker,
     },
+    beforeMount: function() {
+        this.defaultLoad();
+    },
     methods: {
+        defaultLoad(){
+            var self = this;
+            axios.get('http://localhost:3030/search').then(function(response){
+                self.isLoading = false;
+                self.stickers = response.data;
+            }).catch(function (error) {
+                self.isError = true;
+                console.log('E R R O R - AttemptLogin function // Login vue');
+            });
+        },
         generateWidth() {
             this.sticker_width = Math.floor(Math.random() * 300) + 220;
             return this.sticker_width;

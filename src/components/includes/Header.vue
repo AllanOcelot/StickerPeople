@@ -2,15 +2,25 @@
     <header>
         <div class="sp-header-account">
             <div class="sp-account-links">
-                <router-link to="/register">Sign Up</router-link>
-                <router-link to="/register">Log In</router-link>
+                <router-link to="/register" v-if="!loggedIn">
+                    Sign Up
+                </router-link>
+                <router-link to="/register" v-if="!loggedIn">
+                    Log In
+                </router-link>
+                <router-link to="/account" v-if="loggedIn">
+                    Account
+                </router-link>
             </div>
         </div>
         <div class="sp-header-main">
             <router-link to="/" class="sp-header-logo">SP</router-link>
 
-            <form class="sp-header-search">
-                <input type="text" name="" class="form-control" placeholder="Search Sticker Pages..." >
+            <form class="sp-header-search" @submit="stickerSearch()">
+                <input type="text" class="form-control"
+                       placeholder="Search Sticker Pages..."
+                       v-model.lazy="stickerSearchString"
+                >
             </form>
 
             <div id="nav">
@@ -22,15 +32,27 @@
 </template>
 
 <script>
+import Router from 'vue-router'
+
+
 export default {
     name: 'Header',
     data: function () {
         return {
+            stickerSearchString: '',
+            loggedIn: false,
         }
     },
-    props: {
-    },
     methods: {
+        stickerSearch() {
+            console.log(this.stickerSearchString.trim());
+            if(this.stickerSearchString.trim().length < 2){
+                console.log(this.stickerSearchString);
+                this.$router.push({ name: 'searchQuery', params: { search: this.stickerSearchString } });
+            }
+        },
+    },
+    props: {
     },
 }
 </script>

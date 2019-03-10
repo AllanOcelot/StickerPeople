@@ -38,6 +38,11 @@ export default new Router({
       component: Search
     },
     {
+      path: '/search?:search',
+      name: 'searchQuery',
+      component: Search
+    },
+    {
       path: '/login',
       name: 'login',
       component: Login
