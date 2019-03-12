@@ -15,7 +15,11 @@
                     />
                 </div>
                 <div class="col-sm-12" v-else>
-                    <h1 v-if="!isError">Loading stickers...</h1>
+                    <div class="pre-loader-container"
+                         v-if="!isError">
+                         <div class="preloader"></div>
+                         Loading stickers...
+                    </div>
                     <h1 v-else>Oh no, there was an error!</h1>
                 </div>
             </div>
@@ -40,6 +44,7 @@ export default {
     },
     data: function(){
         return {
+            searchString: this.$route.params.search,
             isLoading: true,
             isError: false,
             stickers: [],
@@ -47,8 +52,15 @@ export default {
     },
     methods: {
         defaultLoad(){
+            console.log('Function: defaultLoad fired');
             var self = this;
-            axios.get('http://localhost:3030/search').then(function(response){
+            var apiCallURl = 'http://localhost:3030/search';
+            if(this.$route.params.search){
+                apiCallURl = 'http://localhost:3030/search/' + this.$route.params.search;
+            }else{
+                console.log('nah');
+            }
+            axios.get(apiCallURl).then(function(response){
                 self.isLoading = false;
                 self.stickers = response.data;
             }).catch(function (error) {
@@ -59,10 +71,28 @@ export default {
     },
     created: function(){
         this.defaultLoad();
+    },
+    watch: {
+        '$route.params.search': function (search) {
+          this.defaultLoad();
+        },
     }
 }
 </script>
 
 <style scoped lang="less">
-
+    .pre-loader-container {
+        display: block;
+        width: 100%;
+        height: auto;
+        .preloader {
+            display: block;
+            margin: 100px auto;
+            width: 100px;
+            height: 100px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-image: url('/assets/images/preloader.gif');
+        }
+    }
 </style>

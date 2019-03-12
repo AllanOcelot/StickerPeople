@@ -8,6 +8,7 @@ import Search from './views/search.vue'
 
 //Accounts
 import Login from './views/account/Login.vue'
+import Register from './views/account/Register.vue'
 
 //Misc Pages
 import PageNotFound from './views/misc/pageNotFound.vue'
@@ -38,9 +39,14 @@ export default new Router({
       component: Search
     },
     {
-      path: '/search?:search',
+      path: '/search/:search',
       name: 'searchQuery',
       component: Search
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: Register
     },
     {
       path: '/login',

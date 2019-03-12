@@ -16,9 +16,11 @@
         <div class="sp-header-main">
             <router-link to="/" class="sp-header-logo">SP</router-link>
 
-            <form class="sp-header-search" @submit="stickerSearch()">
+            <form class="sp-header-search" @submit="stickerSearch"
+                  v-on:submit.prevent>
+                <i class="fas fa-search sp-header-search-icon" />
                 <input type="text" class="form-control"
-                       placeholder="Search Sticker Pages..."
+                       placeholder="Search..."
                        v-model.lazy="stickerSearchString"
                 >
             </form>
@@ -32,7 +34,7 @@
 </template>
 
 <script>
-import Router from 'vue-router'
+import router from 'vue-router'
 
 
 export default {
@@ -45,13 +47,22 @@ export default {
     },
     methods: {
         stickerSearch() {
-            console.log(this.stickerSearchString.trim());
-            if(this.stickerSearchString.trim().length < 2){
-                console.log(this.stickerSearchString);
+            if(this.stickerSearchString.trim().length > 2){
                 this.$router.push({ name: 'searchQuery', params: { search: this.stickerSearchString } });
+            }else{
+                this.$router.push({ name: 'search' });
             }
         },
     },
+    /*
+    beforeMount: function(){
+        if(this.$route.params.search){
+            this.stickerSearchString = this.$route.params.search;
+        }else{
+            this.stickerSearchString = '';
+        }
+    },
+    */
     props: {
     },
 }
@@ -60,10 +71,10 @@ export default {
 <style scoped lang="less">
     header {
         width: 100%;
-        line-height: 49px;
-        border-bottom: 1px solid #232231;
-        border-top: 1px solid #23223161;
+        line-height: 48px;
+        border-bottom: 1px solid rgba(0,0,0,0.12);
         width: 100%;
+        background: #fff;
         z-index: 10;
 
         .sp-header-account {
@@ -73,7 +84,7 @@ export default {
             width: 100%;
             padding: 0 10px;
             height: 34px;
-            border-bottom: 1px solid #23223161;
+            border-bottom: 1px solid rgba(0,0,0,0.12);
             .sp-account-links {
                 line-height: 34px;
                 a {
@@ -90,12 +101,12 @@ export default {
             display: block;
             width: 100%;
             padding: 0 0 0 20px;
-            height: 49px;
+            height: 48px;
             position: relative;
             justify-content: space-between;
-            text-align: left;
 
             .sp-header-logo {
+                float: left;
                 display: inline-block;
                 font-size: 1.5em;
                 font-weight: 900;
@@ -105,11 +116,46 @@ export default {
             }
 
             .sp-header-search {
-                position: absolute;
-                top: 6px;
-                left: 50%;
-                margin-left: -570px;
-                width: 1140px;
+                position: relative;
+                display: inline-block;
+                width: 100%;
+                max-width: 1024px;
+                position: relative;
+                margin: 0 auto;
+
+                .sp-header-search-icon {
+                    position: absolute;
+                    left: 5px;
+                    top: 3px;
+                    width: 36px;
+                    background-color: #fff;
+                    border-right: 1px solid rgba(0, 0, 0, 0.2);
+                    overflow: hidden;
+                    height: 27px;
+                    line-height: 27px;
+                    padding-right: 4px;
+                    box-sizing: border-box;
+                    pointer-events: none;
+                    opacity: 0.8;
+                    transition: opacity 0.2s;
+                }
+
+                .form-control {
+                    padding-left: 50px;
+                    padding-top: 0;
+                    padding-bottom: 0;
+                    display: block;
+                    font-size: 0.8em;
+                    box-sizing: border-box;
+                    line-height: 30px;
+                    padding-right: 10px;
+                }
+
+                &:hover{
+                    .sp-header-search-icon {
+                        opacity: 1;
+                    }
+                }
             }
 
             #nav {

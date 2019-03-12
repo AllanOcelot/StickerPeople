@@ -1,6 +1,7 @@
 <template>
     <div class="sp-sticker-banner">
         <sticker
+            v-if="stickers"
             v-for="sticker in stickers" :key="sticker.ID"
             :sticker="sticker"
             :imageOnly="true"
@@ -15,8 +16,8 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="sp-home-banner-content">
-                        <h1>{{propTitle}}</h1>
-                        <p>{{propSubtitle}}</p>
+                        <h1 v-if="propTitle">{{propTitle}}</h1>
+                        <p v-if="propSubtitle">{{propSubtitle}}</p>
                     </div>
                 </div>
             </div>
@@ -58,11 +59,11 @@ export default {
             });
         },
         generateWidth() {
-            this.sticker_width = Math.floor(Math.random() * 300) + 220;
+            this.sticker_width = Math.floor(Math.random() * 400) + 220;
             return this.sticker_width;
         },
         generateHeight() {
-            this.sticker_height = Math.floor(Math.random() * 300) + 220;
+            this.sticker_height = Math.floor(Math.random() * 400) + 220;
             return this.sticker_height;
         },
         generateRotation() {
@@ -102,6 +103,12 @@ export default {
         margin-bottom: 40px;
         min-height: 60vh;
         overflow: hidden;
+        h1,p{
+            cursor: default;
+        }
+        p:last-of-type{
+            margin-bottom: 0;
+        }
     }
     .sp-sticker-banner:after {
         content: '';

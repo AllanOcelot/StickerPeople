@@ -1,8 +1,8 @@
 <template>
     <div class="page-wrapper">
         <stickerBanner
-            propTitle="This is a test"
-            propSubtitle="This is subtitle"
+            propTitle="Welcome To Sticker People"
+            propSubtitle="The Community For Sticker Lovers!"
         />
         <div class="container">
             <div class="row">

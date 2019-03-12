@@ -26,6 +26,10 @@ export default {
 
 <style scoped lang="less">
     footer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
         background: #fff;
         color: #525252;
         padding: 20px 0;

@@ -22,11 +22,29 @@ export default {
 
 <style lang="less">
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+    font-family: 'Roboto', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    background: #efefef;
+    color: #2c3e50;
+    min-height: 100vh;
+    padding-bottom: 60px;
+    position: relative;
+
+    h1 {
+        font-family: 'Pacifico', cursive;
+    }
+
+    a {
+        color: #1c4f82;
+        transition: color 0.2s;
+        text-decoration: none;
+
+        &:hover {
+            color: #4488cc;
+        }
+    }
 }
 
 @import'~bootstrap/dist/css/bootstrap.css';
