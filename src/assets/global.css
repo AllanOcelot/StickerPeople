@@ -1,0 +1,56 @@
+:root{
+    --var-brand-primary: #07070a;
+    --var-brand-primary-hover: #22222f;
+
+    --var-green: #22ca56;
+    --var-green-hover: #5ad480;
+
+    --var-red: #ab1e1e;
+    --var-red-hover: #e85656
+}
+
+/* General classes to add to things */
+.disable {
+    cursor: not-allowed !important;
+    opacity: 0.7 !important;
+}
+
+/* Standard button */
+.sticker-button {
+    width: auto;
+    display: inline-block;
+    margin: 0 auto;
+    font-size: 1em;
+    line-height: 52px;
+    height: 50px;
+    color: #fff;
+    padding: 0 20px;
+    border-radius: 2px;
+    cursor: pointer;
+    letter-spacing: 2px;
+    background: var(--var-brand-primary);
+    transition: background 0.2s, color 0.2s;
+}
+.sticker-button:hover {
+    background-color: var(--var-brand-primary-hover);
+    color: #fff;
+}
+
+.sticker-button i {
+    color: #fff;
+}
+
+.sticker-button.positive {
+    background-color: var(--var-green);
+}
+.sticker-button.positive:hover {
+    background-color: var(--var-green-hover);
+}
+.sticker-button.negative {
+    background-color: var(--var-red);
+}
+.sticker-button.negative:hover {
+    background-color: var(--var-red-hover);
+}
+
+/* End of Button */

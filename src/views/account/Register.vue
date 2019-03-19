@@ -8,27 +8,35 @@
             </div>
             <div class="right-content">
                 <div class="tabs">
-                    <div class="tab">
-                        LOGIN
-                    </div>
-                    <div class="tab">
+                    <div :class="{'tab--active': view == 'register'}"
+                         @click="view = 'register'" class="tab">
                         REGISTER
                     </div>
+                    <div :class="{'tab--active': view == 'login'}"
+                          @click="view = 'login'" class="tab">
+                        LOGIN
+                    </div>
                 </div>
-                <form class="">
+                <form v-if="view === 'register'" class="">
                     <label for="spUsername">Username:</label>
                     <div class="inputContainer">
-                        <input type="text" name="spUsername" id="spUsername" value="" placeholder="Desired username...">
+                        <input type="text" v-model="userUsername" name="spUsername" id="spUsername" value="" placeholder="Desired username...">
                     </div>
                     <label for="spEmail">Email:</label>
                     <div class="inputContainer">
-                        <input type="password" name="spEmail" id="spEmail" value="" placeholder="Please provide a valid email">
+                        <input type="password" v-model="userEmail" name="spEmail" id="spEmail" value="" placeholder="Please provide a valid email">
                     </div>
                     <label for="spPW">Password:</label>
                     <div class="inputContainer">
-                        <input type="password" name="spPw" id="spPw" value="" placeholder="Please provide a password">
+                        <input type="password" v-model="userPW" name="spPw" id="spPw" value="" placeholder="Please provide a password">
                     </div>
                     <p class="terms">When you sign up, you agree to our <a href="/terms-and-conditions">Terms &amp; Conditions</a>. </p>
+                    <div class="sticker-button positive"
+                    @click="checkRegisterDetails()"
+                    >
+                        Create my account!
+                        <i class="far fa-check-circle" />
+                    </div>
                 </form>
             </div>
         </div>
@@ -52,9 +60,25 @@ export default {
     data: function(){
         return {
             userLoggedin: false,
+            view: 'register',
+            userUsername: null,
+            userPW: null,
+            userEmail: null
         }
     },
     methods: {
+        validateUsername(userName){
+            var reg = new RegExp("^([A-Za-z0-9]){4,20}$");
+            if(reg.test(userName) === true){
+                alert('tre');
+            }
+        },
+        checkRegisterDetails(){
+            if (this.userUsername !== null ){
+                this.validateUsername(this.Username);
+            }
+            return false;
+        },
         attemptLogin(){
             axios.get(API_URL).then(function(response){
                 console.log(response.data);
@@ -83,7 +107,7 @@ export default {
         background-color: #fff;
         overflow: hidden;
         padding: 0;
-        border-radius: 14px;
+        border-radius: 30px;
         width: 600px;
 
 
@@ -97,12 +121,28 @@ export default {
         .tabs {
             display: block;
             width: 100%;
+            .tab{
+                display: inline-block;
+                width: 50%;
+                line-height: 50px;
+                font-weight: 600;
+                letter-spacing: 2px;
+                cursor: pointer;
+                border-bottom: 2px solid #07070a;
+                transition: color 0.2s, background 0.2s;
+            }
+            .tab:hover,
+            .tab--active {
+                background-color: #07070a;
+                color: #f1f1f1;
+            }
         }
 
         form {
-            text-align: left;
             padding: 15px 20px;
             label {
+                width: 100%;
+                text-align: left;
                 font-size: 0.8em;
                 margin: 0;
                 color: #757575;
